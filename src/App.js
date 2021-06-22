@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import { CardList } from './components/card-list/card-list.component'
 
 class App extends Component {
   constructor() {
@@ -16,11 +17,16 @@ class App extends Component {
   }
 
   render() {
+    if(!this.state.monsters) {
+      return (
+        <div>Loading</div>
+      )
+    }
     return (
       <div className="App">
-        {this.state.monsters.map(monster => (
-          <h1 key={this.state.monsters.indexOf(monster)}>{monster.name}</h1>
-        ))}
+        <CardList
+          monsters={this.state.monsters}
+        />
       </div>
     )
   }
